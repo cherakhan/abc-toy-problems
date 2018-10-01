@@ -7,7 +7,7 @@ function [] = plotbivariate(X,Y,xlab,ylab)
 % X = random variable 1
 % Y = random variable 2
 
-figure
+% figure
 %% Joint distribution
 ax1 = subplot(4,4,[2,3,4,6,7,8,10,11,12]);
 scatter(X,Y,'k','marker','.')
