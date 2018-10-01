@@ -57,7 +57,7 @@ if strcmp('Gaussian',problem)
     
     % The likelihood approximation
     range = normterm(problem,data);
-    tolerance = ones(1,length(range))*0.5;
+    tolerance = ones(1,length(range))*0.625;
     % tighten the tolerance on the first polynomial term
     tolerance(1) = tolerance(1)*0.2;
     
@@ -96,7 +96,7 @@ if strcmp('fullbanana',problem)
 end
 
 
-if 1
+
 %% Analytical sampling
 
 % labels for large figure comparing ABC to analytical inference over 
@@ -151,8 +151,8 @@ for ii = 1:4
     %ylabel('Y')
     bananaplot(0,0,1,1,0.9,1,1,'r--',0.5)
     bananaplot(0,0,1,1,0.9,1,1,'r--',0.95)
-    text(4,-3,labels{ii},'FontSize',12)
-    text(-4,12.5,analytical_methods{ii},'FontSize',12)
+    text(4,-3,labels{ii})
+    text(-4,12.5,analytical_methods{ii})
     xlim([-5,5])
     ylim([-5,15])
     
@@ -378,10 +378,10 @@ ylim([-5,15])
 %xlabel('X')
 %ylabel('Y')
 box on
-text(4,-3,labels{4+i_methods},'FontSize',12)
-text(-4,12.5,methods{i_methods},'FontSize',12)
+text(4,-3,labels{4+i_methods})
+text(-4,12.5,methods{i_methods})
 if i_methods == 4
-    set(gcf,'units','centimeters','position',[0,0,10,20],'papersize',[10,20])
+    set(gcf,'units','centimeters','position',[0,0,15,20],'papersize',[15,20])
     print('-dpdf','-painters','abcanacomparison.pdf')
 end
 
