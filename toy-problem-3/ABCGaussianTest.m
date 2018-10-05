@@ -97,7 +97,7 @@ for ii = 1:2
     
     figure(1)
 
-    colors = brewermap(4,'Set1');
+    colors = brewermap(6,'Set1');
     
     % subplot 1
     subplot(6,2,1)
@@ -124,8 +124,8 @@ for ii = 1:2
         gCM,chiqf_m(0.95,2));
     [GX50,GY50] = error_ellipse([mean(gchain(:,1)),mean(gchain(:,2))],...
         gCM,chiqf_m(0.5,2));
-    plot(GX95,GY95,'color',colors(2,:),'linewidth',1)
-    plot(GX50,GY50,'color',colors(2,:),'linewidth',1)
+    plot(GX95,GY95,'color',colors(4,:),'linewidth',1)
+    plot(GX50,GY50,'color',colors(4,:),'linewidth',1)
 
     uCovar = sqrt(mean(uchain(:,3))*mean(uchain(:,4)))*mean(uchain(:,5));
     uCM = [mean(uchain(:,3)),uCovar;uCovar,mean(uchain(:,4))];
@@ -133,8 +133,8 @@ for ii = 1:2
         gCM,chiqf_m(0.95,2));
     [UX50,UY50] = error_ellipse([mean(uchain(:,1)),mean(uchain(:,2))],...
         gCM,chiqf_m(0.5,2));
-    plot(UX95,UY95,'color',colors(4,:),'linewidth',1)
-    plot(UX50,UY50,'color',colors(4,:),'linewidth',1)
+    plot(UX95,UY95,'color',colors(2,:),'linewidth',1)
+    plot(UX50,UY50,'color',colors(2,:),'linewidth',1)
     xlabel('X')
     ylabel('Y')
     %set(gca,'XAxisLocation','Top')
@@ -142,20 +142,23 @@ for ii = 1:2
     
     % subplot 3
     subplot(6,2,3)
-    histogram(gchain(1:n_to_plot,1),20,'facecolor',colors(2,:),'facealpha',0.5,'normalization','pdf')
+    histogram(gchain(1:n_to_plot,1),20,'facecolor',colors(4,:),'facealpha',0.5,'normalization','pdf')
     hold on
-    histogram(uchain(1:n_to_plot,1),20,'facecolor',colors(4,:),'facealpha',0.5,'normalization','pdf')
+    h1 = histogram(uchain(1:n_to_plot,1),20,'facecolor',colors(2,:),'facealpha',0.5,'normalization','pdf');
+    topoff = max(h1.Values)+0.2*max(h1.Values);
+    plot(linspace(2.5,2.5),linspace(0,topoff),'r--')
     set(gca,'YTick',[])
     xlabel('\mu_X')
     xlim([0,10])
+    ylim([0,topoff])
     text(0.925,0.15,'c','Units','normalized')
     % text(0.05,0.85,'\mu_X','Units','normalized')
 
     % subplot 4
     subplot(6,2,4)
-    plot(1:interval:n_to_plot,gchain(1:interval:n_to_plot,1),'color',colors(2,:))
+    plot(1:interval:n_to_plot,gchain(1:interval:n_to_plot,1),'color',colors(4,:))
     hold on
-    plot(1:interval:n_to_plot,uchain(1:interval:n_to_plot,1),'color',colors(4,:))
+    plot(1:interval:n_to_plot,uchain(1:interval:n_to_plot,1),'color',colors(2,:))
     rightPar = ones(1,n_to_plot/interval)*2.5;
     plot(1:interval:n_to_plot,rightPar,'r--')
     ylim([0,10])
@@ -166,20 +169,23 @@ for ii = 1:2
 
     % subplot 5
     subplot(6,2,5)
-    histogram(gchain(1:n_to_plot,2),20,'facecolor',colors(2,:),'facealpha',0.5,'normalization','pdf')
+    histogram(gchain(1:n_to_plot,2),20,'facecolor',colors(4,:),'facealpha',0.5,'normalization','pdf')
     hold on
-    histogram(uchain(1:n_to_plot,2),20,'facecolor',colors(4,:),'facealpha',0.5,'normalization','pdf')
+    h2 = histogram(uchain(1:n_to_plot,2),20,'facecolor',colors(2,:),'facealpha',0.5,'normalization','pdf');
+    topoff = max(h2.Values)+0.2*max(h2.Values);
+    plot(linspace(7.5,7.5),linspace(0,topoff),'r--')
     set(gca,'YTick',[])
     xlabel('\mu_Y')
     xlim([0,10])
+    ylim([0,topoff])
     text(0.925,0.15,'e','Units','normalized')
     % text(0.05,0.85,'\mu_Y','Units','normalized')
     
     % subplot 6
     subplot(6,2,6)
-    plot(1:interval:n_to_plot,gchain(1:interval:n_to_plot,2),'color',colors(2,:))
+    plot(1:interval:n_to_plot,gchain(1:interval:n_to_plot,2),'color',colors(4,:))
     hold on
-    plot(1:interval:n_to_plot,uchain(1:interval:n_to_plot,2),'color',colors(4,:))
+    plot(1:interval:n_to_plot,uchain(1:interval:n_to_plot,2),'color',colors(2,:))
     rightPar = ones(1,n_to_plot/interval)*7.5;
     plot(1:interval:n_to_plot,rightPar,'r--')
     ylim([0,10])
@@ -190,20 +196,23 @@ for ii = 1:2
 
     % subplot 7
     subplot(6,2,7)
-    histogram(gchain(1:n_to_plot,3),20,'facecolor',colors(2,:),'facealpha',0.5,'normalization','pdf')
+    histogram(gchain(1:n_to_plot,3),20,'facecolor',colors(4,:),'facealpha',0.5,'normalization','pdf')
     hold on
-    histogram(uchain(1:n_to_plot,3),20,'facecolor',colors(4,:),'facealpha',0.5,'normalization','pdf')
+    h3 = histogram(uchain(1:n_to_plot,3),20,'facecolor',colors(2,:),'facealpha',0.5,'normalization','pdf');
+    topoff = max(h3.Values)+0.2*max(h3.Values);
+    plot(linspace(4,4),linspace(0,topoff),'r--')
     set(gca,'YTick',[])
     xlabel('\sigma^2_X')
     xlim([0,10])
+    ylim([0,topoff])
     text(0.925,0.15,'g','Units','normalized')
     % text(0.05,0.85,'\sigma^2_X','Units','normalized')
 
     % subplot 8
     subplot(6,2,8)
-    plot(1:interval:n_to_plot,gchain(1:interval:n_to_plot,3),'color',colors(2,:))
+    plot(1:interval:n_to_plot,gchain(1:interval:n_to_plot,3),'color',colors(4,:))
     hold on
-    plot(1:interval:n_to_plot,uchain(1:interval:n_to_plot,3),'color',colors(4,:))
+    plot(1:interval:n_to_plot,uchain(1:interval:n_to_plot,3),'color',colors(2,:))
     rightPar = ones(1,n_to_plot/interval)*4;
     plot(1:interval:n_to_plot,rightPar,'r--')
     ylim([0,10])
@@ -214,20 +223,23 @@ for ii = 1:2
 
     % subplot 9
     subplot(6,2,9)
-    histogram(gchain(1:n_to_plot,4),20,'facecolor',colors(2,:),'facealpha',0.5,'normalization','pdf')
+    histogram(gchain(1:n_to_plot,4),20,'facecolor',colors(4,:),'facealpha',0.5,'normalization','pdf')
     hold on
-    histogram(uchain(1:n_to_plot,4),20,'facecolor',colors(4,:),'facealpha',0.5,'normalization','pdf')
+    h4 = histogram(uchain(1:n_to_plot,4),20,'facecolor',colors(2,:),'facealpha',0.5,'normalization','pdf');
+    topoff = max(h4.Values)+0.2*max(h4.Values);
+    plot(linspace(6,6),linspace(0,topoff),'r--')
     set(gca,'YTick',[])
     xlabel('\sigma^2_Y')
     xlim([0,10])
+    ylim([0,topoff])
     text(0.925,0.15,'i','Units','normalized')
     % text(0.05,0.85,'\sigma^2_Y','Units','normalized')
 
     % subplot 10
     subplot(6,2,10)
-    plot(1:interval:n_to_plot,gchain(1:interval:n_to_plot,4),'color',colors(2,:))
+    plot(1:interval:n_to_plot,gchain(1:interval:n_to_plot,4),'color',colors(4,:))
     hold on
-    plot(1:interval:n_to_plot,uchain(1:interval:n_to_plot,4),'color',colors(4,:))
+    plot(1:interval:n_to_plot,uchain(1:interval:n_to_plot,4),'color',colors(2,:))
     rightPar = ones(1,n_to_plot/interval)*6;
     plot(1:interval:n_to_plot,rightPar,'r--')
     ylim([0,10])
@@ -238,18 +250,21 @@ for ii = 1:2
 
     % subplot 11
     subplot(6,2,11)
-    histogram(gchain(1:n_to_plot,5),20,'facecolor',colors(2,:),'facealpha',0.5,'normalization','pdf')
+    histogram(gchain(1:n_to_plot,5),20,'facecolor',colors(4,:),'facealpha',0.5,'normalization','pdf')
     hold on
-    histogram(uchain(1:n_to_plot,5),20,'facecolor',colors(4,:),'facealpha',0.5,'normalization','pdf')
+    h5 = histogram(uchain(1:n_to_plot,5),20,'facecolor',colors(2,:),'facealpha',0.5,'normalization','pdf');
+    topoff = max(h5.Values)+0.2*max(h5.Values);
+    plot(linspace(0.9,0.9),linspace(0,topoff),'r--')
     set(gca,'YTick',[])
+    ylim([0,topoff])
     xlabel('\rho')
     text(0.925,0.15,'k','Units','normalized')
 
     % subplot 12
     subplot(6,2,12)
-    plot(1:interval:n_to_plot,gchain(1:interval:n_to_plot,5),'color',colors(2,:))
+    plot(1:interval:n_to_plot,gchain(1:interval:n_to_plot,5),'color',colors(4,:))
     hold on
-    plot(1:interval:n_to_plot,uchain(1:interval:n_to_plot,5),'color',colors(4,:))
+    plot(1:interval:n_to_plot,uchain(1:interval:n_to_plot,5),'color',colors(2,:))
     rightPar = ones(1,n_to_plot/interval)*0.5;
     plot(1:interval:n_to_plot,rightPar,'r--')
     ylim([-1,1])
