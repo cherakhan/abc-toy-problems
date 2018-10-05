@@ -110,6 +110,7 @@ set(gca,'YTick',[])
 xlabel('\mu')
 ylabel('posterior density')
 text(0.05,0.95,'a','Units','normalized')
+xlim([4,6.25])
 
 subplot(1,3,2)
 h2 = histogram(posterior_sigma,'normalization','pdf','facecolor','k','facealpha',0.3);
@@ -121,6 +122,7 @@ xlabel('\sigma')
 ylabel('posterior density')
 set(gca,'YTick',[])
 text(0.05,0.95,'b','Units','normalized')
+xlim([1.25,3])
 
 subplot(1,3,3)
 % True distribution vs. ABC posterior mean

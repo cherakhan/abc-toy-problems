@@ -98,6 +98,7 @@ ylabel('posterior density')
 xlim([0,10])
 text(0.05,0.95,'a','Units','normalized')
 set(gca,'Ytick',[])
+xlim([3.25,6.75])
 
 subplot(1,2,2)
 plot(SigmaMeshP1,SigmaDensityP1,'color',colors(1,:),'linewidth',1)
@@ -111,6 +112,7 @@ legend({'\epsilon = 0.1','\epsilon = 0.5','\epsilon = 1'})
 legend boxoff
 text(0.05,0.95,'b','Units','normalized')
 set(gca,'Ytick',[])
+xlim([0.5,3.25])
 
 set(gcf,'units','centimeters','position',[0,0,25,10],'papersize',[25,10])
 print -dpdf -painters tolerancecomparison.pdf
