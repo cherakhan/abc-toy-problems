@@ -126,7 +126,7 @@ for ii = 1:2
         gCM,chiqf_m(0.5,2));
     plot(GX95,GY95,'color',colors(4,:),'linewidth',1)
     plot(GX50,GY50,'color',colors(4,:),'linewidth',1)
-
+    
     uCovar = sqrt(mean(uchain(:,3))*mean(uchain(:,4)))*mean(uchain(:,5));
     uCM = [mean(uchain(:,3)),uCovar;uCovar,mean(uchain(:,4))];
     [UX95,UY95] = error_ellipse([mean(uchain(:,1)),mean(uchain(:,2))],...
@@ -135,6 +135,7 @@ for ii = 1:2
         gCM,chiqf_m(0.5,2));
     plot(UX95,UY95,'color',colors(2,:),'linewidth',1)
     plot(UX50,UY50,'color',colors(2,:),'linewidth',1)
+
     xlabel('X')
     ylabel('Y')
     %set(gca,'XAxisLocation','Top')
