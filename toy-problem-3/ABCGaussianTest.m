@@ -111,28 +111,27 @@ for ii = 1:2
 
     % subplot 2
     subplot(6,2,2)
-    
     [AX95,AY95] = error_ellipse([2.5,7.5],[4,2.4495;2.4495,6],chiqf_m(0.95,2));
     [AX50,AY50] = error_ellipse([2.5,7.5],[4,2.4495;2.4495,6],chiqf_m(0.95,2));
     plot(AX95,AY95,'r--','linewidth',1)
     hold on
     plot(AX50,AY50,'r--','linewidth',1)
 
-    gCovar = sqrt(mean(gchain(:,3))*mean(gchain(:,4)))*mean(gchain(:,5));
-    gCM = [mean(gchain(:,3)),gCovar;gCovar,mean(gchain(:,4))];
-    [GX95,GY95] = error_ellipse([mean(gchain(:,1)),mean(gchain(:,2))],...
+    gCovar = sqrt(mean(gchain(1:n_to_plot,3))*mean(gchain(1:n_to_plot,4)))*mean(gchain(1:n_to_plot,5));
+    gCM = [mean(gchain(1:n_to_plot,3)),gCovar;gCovar,mean(gchain(1:n_to_plot,4))];
+    [GX95,GY95] = error_ellipse([mean(gchain(1:n_to_plot,1)),mean(gchain(1:n_to_plot,2))],...
         gCM,chiqf_m(0.95,2));
-    [GX50,GY50] = error_ellipse([mean(gchain(:,1)),mean(gchain(:,2))],...
+    [GX50,GY50] = error_ellipse([mean(gchain(1:n_to_plot,1)),mean(gchain(1:n_to_plot,2))],...
         gCM,chiqf_m(0.5,2));
     plot(GX95,GY95,'color',colors(4,:),'linewidth',1)
     plot(GX50,GY50,'color',colors(4,:),'linewidth',1)
-    
-    uCovar = sqrt(mean(uchain(:,3))*mean(uchain(:,4)))*mean(uchain(:,5));
-    uCM = [mean(uchain(:,3)),uCovar;uCovar,mean(uchain(:,4))];
-    [UX95,UY95] = error_ellipse([mean(uchain(:,1)),mean(uchain(:,2))],...
-        gCM,chiqf_m(0.95,2));
-    [UX50,UY50] = error_ellipse([mean(uchain(:,1)),mean(uchain(:,2))],...
-        gCM,chiqf_m(0.5,2));
+
+    uCovar = sqrt(mean(uchain(1:n_to_plot,3))*mean(uchain(1:n_to_plot,4)))*mean(uchain(1:n_to_plot,5));
+    uCM = [mean(uchain(1:n_to_plot,3)),uCovar;uCovar,mean(uchain(1:n_to_plot,4))];
+    [UX95,UY95] = error_ellipse([mean(uchain(1:n_to_plot,1)),mean(uchain(1:n_to_plot,2))],...
+        uCM,chiqf_m(0.95,2));
+    [UX50,UY50] = error_ellipse([mean(uchain(1:n_to_plot,1)),mean(uchain(1:n_to_plot,2))],...
+        uCM,chiqf_m(0.5,2));
     plot(UX95,UY95,'color',colors(2,:),'linewidth',1)
     plot(UX50,UY50,'color',colors(2,:),'linewidth',1)
 
@@ -141,6 +140,7 @@ for ii = 1:2
     %set(gca,'XAxisLocation','Top')
     text(0.925,0.15,'b','Units','normalized')
     
+    figure(1)
     % subplot 3
     subplot(6,2,3)
     histogram(gchain(1:n_to_plot,1),20,'facecolor',colors(4,:),'facealpha',0.5,'normalization','pdf')
